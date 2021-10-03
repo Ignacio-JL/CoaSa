@@ -14,10 +14,11 @@ using System.Threading.Tasks;
 
 namespace CoaSaAPI_MVC.Controllers
 {
+        
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
+        private String url = "https://localhost:44353/api/usuarios";
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
@@ -26,19 +27,15 @@ namespace CoaSaAPI_MVC.Controllers
             //https://localhost:44353/api/usuarios
         public IActionResult Index()
         {
-
-
-
             return View();
         }
-        
         
 
         public async Task<IActionResult> ListaUsuario(IFormCollection form)
         {
             var httpClient = new HttpClient();
             
-            var json = await httpClient.GetStringAsync("https://localhost:44353/api/usuarios");
+            var json = await httpClient.GetStringAsync($"{url}");
             var usuariosList = JsonConvert.DeserializeObject<List<Usuarios>>(json);
 
             return View(usuariosList);
@@ -57,7 +54,7 @@ namespace CoaSaAPI_MVC.Controllers
                     Telefono = form["Telefono"]
                 };
 
-                await httpClient.PostAsJsonAsync("https://localhost:44353/api/usuarios", usuario);
+                await httpClient.PostAsJsonAsync($"{url}", usuario);
                 return Redirect("https://localhost:44382/Home/StatusOk");
             }
 
@@ -67,7 +64,7 @@ namespace CoaSaAPI_MVC.Controllers
         public async Task<IActionResult> Eliminar (int id)
         {
             var httpClient = new HttpClient();
-            await httpClient.DeleteAsync($"https://localhost:44353/api/usuarios/{id}");
+            await httpClient.DeleteAsync($"{url}/{id}");
 
             return Redirect("https://localhost:44382/Home/StatusOk");
         }
@@ -75,7 +72,7 @@ namespace CoaSaAPI_MVC.Controllers
         //Mostrar los datos en Editar para luego ejecutar edit con Html.ActionLink
         public async Task<IActionResult> Editar(int id) {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync($"https://localhost:44353/api/usuarios/{id}");
+            var json = await httpClient.GetStringAsync($"{url}/{id}");
             var usuario = JsonConvert.DeserializeObject<Usuarios>(json);
 
 
@@ -96,20 +93,11 @@ namespace CoaSaAPI_MVC.Controllers
                 Telefono = form["Telefono"]
             };
 
-            await httpClient.PutAsJsonAsync($"https://localhost:44353/api/usuarios/{id}", usuario);
+            await httpClient.PutAsJsonAsync($"{url}/{id}", usuario);
 
             return Redirect("https://localhost:44382/Home/StatusOk");
         }
-
-        
-        public async Task<IActionResult> Details(int id)
-        {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync($"https://localhost:44353/api/usuarios/{id}");
-            var usuario = JsonConvert.DeserializeObject<Usuarios>(json);
-
-            return View(usuario);
-        }
+     
 
         public IActionResult Privacy()
         {
