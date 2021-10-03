@@ -148,3 +148,5 @@ C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Pa
 C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Views\Home\Details.cshtml.g.cs
 C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Views\Home\Crear.cshtml.g.cs
 C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Views\Home\StatusOk.cshtml.g.cs
+C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Views\Home\ListaUsuario.cshtml.g.cs
+C:\Users\Ignacio\source\repos\DatabaseAPI\CoaSaAPI_MVC\obj\Debug\net5.0\Razor\Views\Home\Editar.cshtml.g.cs

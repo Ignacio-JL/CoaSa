@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Editar";
+}
+@{ var usuario = Model;
+}
+<h1>Editar Usuario</h1>
+
+<h2>Usuario a Reemplzar</h2>
+<div class="col-md-12">
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre Usuario</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Email</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@usuario.id</td>
+                <td>@usuario.UserName</td>
+                <td>@usuario.Nombre</td>
+                <td>@usuario.Email</td>
+                <td>@usuario.Telefono</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<hr />
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <h2 class="text-center col-md-12">Ingrese nuevos datos</h2>
+            <form action="/Home/Edit" method="post" class="row needs-validation" name="formCrear" novalidate>
+                <div class="col-md-2">
+                    <label for="id" class="form-label">Id</label>
+                    <input type="number" value="@usuario.id" id="id" name="id" class="form-control" required readonly />
+                    <div class="valid-feedback">Campo inmodificable</div>
+                </div>
+                <div class="col-md-5">
+                    <label for="UserName" class="form-label">Nombre de Usuario</label>
+                    <input type="text" id="UserName" name="UserName" placeholder="nombreUsuario" class="form-control" required />
+                    <div class="invalid-feedback">Este campo es obligatorio</div>
+                </div>
+                <div class="col-md-5">
+                    <label for="Nombre" class="form-label">Nombre</label>
+                    <input type="text" id="Nombre" name="Nombre" placeholder="nombre" class="form-control" required />
+                    <div class="invalid-feedback">Este campo es obligatorio</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="Email" class="form-label">Email</label>
+                    <input type="email" id="Email" name="Email" placeholder="example@example.com" class="form-control" required />
+                    <div class="invalid-feedback">Este campo y formato es obligatorio</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="Telefono" class="form-label">Teléfono</label>
+                    <input type="text" id="Telefono" name="Telefono" placeholder="teléfono" class="form-control" />
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-danger" style="margin: 20px auto;">Editar</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<hr />
+<h2>Crear Nuevo Usuario</h2>
+<div class="container">
+    <div class="row">
+
+        <div class="col">
+            <h2 class="text-center col-md-12">Crear Usuario</h2>
+            <form action="/Home/Crear" method="post" class="row needs-validation" name="formCrear" novalidate>
+                <div class="col-md-6">
+                    <label for="UserName" class="form-label">Nombre de Usuario</label>
+                    <input type="text" id="UserName" name="UserName" placeholder="nombreUsuario" class="form-control" required />
+                    <div class="invalid-feedback">Este campo es obligatorio</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="Nombre" class="form-label">Nombre</label>
+                    <input type="text" id="Nombre" name="Nombre" placeholder="nombre" class="form-control" required />
+                    <div class="invalid-feedback">Este campo es obligatorio</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="Email" class="form-label">Email</label>
+                    <input type="email" id="Email" name="Email" placeholder="example@example.com" class="form-control" required />
+                    <div class="invalid-feedback">Este campo y formato es obligatorio</div>
+                </div>
+                <div class="col-md-6">
+                    <label for="Telefono" class="form-label">Teléfono</label>
+                    <input type="text" id="Telefono" name="Telefono" placeholder="teléfono" class="form-control" />
+                </div>
+
+                <div class="col-md-12 text-center">
+                    <button type="submit" class="btn btn-danger" style="margin: 20px auto;">Crear usuario</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

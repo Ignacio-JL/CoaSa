@@ -32,20 +32,20 @@ namespace CoaSaAPI_MVC.Controllers
             return View();
         }
         
-        public async Task<IActionResult> Details(int id)
+        
+
+        public async Task<IActionResult> ListaUsuario(IFormCollection form)
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync($"https://localhost:44353/api/usuarios/{id}");
-            var usuario = JsonConvert.DeserializeObject<Usuarios>(json);
+            
+            var json = await httpClient.GetStringAsync("https://localhost:44353/api/usuarios");
+            var usuariosList = JsonConvert.DeserializeObject<List<Usuarios>>(json);
 
-            return View(usuario);
+            return View(usuariosList);
         }
-
         public async Task<IActionResult> Crear(IFormCollection form)
         {
             var httpClient = new HttpClient();
-
-            
 
             if (form.Count != 0)
             {
@@ -60,10 +60,55 @@ namespace CoaSaAPI_MVC.Controllers
                 await httpClient.PostAsJsonAsync("https://localhost:44353/api/usuarios", usuario);
                 return Redirect("https://localhost:44382/Home/StatusOk");
             }
-            var json = await httpClient.GetStringAsync("https://localhost:44353/api/usuarios");
-            var usuariosList = JsonConvert.DeserializeObject<List<Usuarios>>(json);
 
-            return View(usuariosList);
+            return View();
+        }
+
+        public async Task<IActionResult> Eliminar (int id)
+        {
+            var httpClient = new HttpClient();
+            await httpClient.DeleteAsync($"https://localhost:44353/api/usuarios/{id}");
+
+            return Redirect("https://localhost:44382/Home/StatusOk");
+        }
+
+        //Mostrar los datos en Editar para luego ejecutar edit con Html.ActionLink
+        public async Task<IActionResult> Editar(int id) {
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync($"https://localhost:44353/api/usuarios/{id}");
+            var usuario = JsonConvert.DeserializeObject<Usuarios>(json);
+
+
+            return View(usuario);
+        }
+
+        public async Task<IActionResult> Edit(IFormCollection form)
+        {
+            var httpClient = new HttpClient();
+            var id = int.Parse(form["id"]);
+
+            var usuario = new Usuarios()
+            {
+                id = id,
+                UserName = form["UserName"],
+                Nombre = form["Nombre"],
+                Email = form["Email"],
+                Telefono = form["Telefono"]
+            };
+
+            await httpClient.PutAsJsonAsync($"https://localhost:44353/api/usuarios/{id}", usuario);
+
+            return Redirect("https://localhost:44382/Home/StatusOk");
+        }
+
+        
+        public async Task<IActionResult> Details(int id)
+        {
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync($"https://localhost:44353/api/usuarios/{id}");
+            var usuario = JsonConvert.DeserializeObject<Usuarios>(json);
+
+            return View(usuario);
         }
 
         public IActionResult Privacy()

@@ -1,67 +1,34 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿
 @{
-    ViewData["Title"] = "Crear";
+    ViewData["Title"] = "Crear  Usuario";
 }
-<h1>Lista de usuarios</h1>
-
-<div class="col-md-12">
-    <table class="table table-dark">
-        <thead>
-            <tr>
-                <th scope="col">Id Usuario</th>
-                <th scope="col">Nombre Usuario</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Email</th>
-                <th scope="col">Teléfono</th>
-            </tr>
-        </thead>
-        <tbody>
-                @foreach (var usuarios in Model)
-                {
-                    <tr>
-                            <td scope="row">@usuarios.id</td>
-                            <td>@usuarios.UserName</td>
-                            <td>@usuarios.Nombre</td>
-                            <td>@usuarios.Email</td>
-                            <td>@usuarios.Telefono</td>
-                    </tr>
-                }
-        </tbody>
-    </table>
-
-  
-</div>
-
-<hr />
 
 <div class="container">
     <div class="row">
-        
+
         <div class="col">
             <h2 class="text-center col-md-12">Crear Usuario</h2>
             <form action="Crear" method="post" class="row needs-validation" name="formCrear" novalidate>
                 <div class="col-md-6">
-                    <label for="UserName" class="form-label"></label>
+                    <label for="UserName" class="form-label">Nombre de Usuario</label>
                     <input type="text" id="UserName" name="UserName" placeholder="nombreUsuario" class="form-control" required />
                     <div class="invalid-feedback">Este campo es obligatorio</div>
                 </div>
                 <div class="col-md-6">
-                    <label for="Nombre" class="form-label"></label>
+                    <label for="Nombre" class="form-label">Nombre</label>
                     <input type="text" id="Nombre" name="Nombre" placeholder="nombre" class="form-control" required />
                     <div class="invalid-feedback">Este campo es obligatorio</div>
                 </div>
                 <div class="col-md-6">
-                    <label for="Email" class="form-label"></label>
+                    <label for="Email" class="form-label">Email</label>
                     <input type="email" id="Email" name="Email" placeholder="example@example.com" class="form-control" required />
-                    <div class="invalid-feedback">Este campo es obligatorio @example</div>
+                    <div class="invalid-feedback">Este campo y formato es obligatorio</div>
                 </div>
                 <div class="col-md-6">
-                    <label for="Telefono" class="form-label"></label>
-                    <input type="text" id="Telefono" name="Telefono" placeholder="teleefono" class="form-control" />
+                    <label for="Telefono" class="form-label">Teléfono</label>
+                    <input type="text" id="Telefono" name="Telefono" placeholder="teléfono" class="form-control" />
                 </div>
-                
+
                 <div class="col-md-12 text-center">
                     <button type="submit" class="btn btn-danger" style="margin: 20px auto;">Crear usuario</button>
                 </div>
@@ -72,13 +39,13 @@
 </div>
 
 <script>
-    
+
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {
         'use strict'
 
         // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        
+
         var forms = document.querySelectorAll('.needs-validation')
 
         // Loop over them and prevent submission
@@ -95,5 +62,3 @@
             })
     })()
 </script>
-
-
